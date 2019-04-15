@@ -10,7 +10,7 @@ add_compile_options(-std=c++11 -O2)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
-  OpenCV
+#  OpenCV
 )
 catkin_package(
   INCLUDE_DIRS include
@@ -76,15 +76,15 @@ target_link_libraries(${PROJECT_NAME}_test
   ${catkin_LIBRARIES}
 )
 ## mobilenet_ssd test
-add_executable(${PROJECT_NAME}ssd_test
-    src/mobilenetssd_test.cpp
-)
+#add_executable(${PROJECT_NAME}ssd_test
+#    src/mobilenetssd_test.cpp
+#)
 
-target_link_libraries(${PROJECT_NAME}ssd_test
-#  ${OpenCV_INCLUDE_DIRS}
-  ${OpenCV_LIBRARIES}
-  ${catkin_LIBRARIES}
-)
+#target_link_libraries(${PROJECT_NAME}ssd_test
+##  ${OpenCV_INCLUDE_DIRS}
+#  ${OpenCV_LIBRARIES}
+#  ${catkin_LIBRARIES}
+#)
 
 ## mobilenet_ssd test
 add_executable(${PROJECT_NAME}tf_test

@@ -6,10 +6,12 @@
 
 using namespace std;
 using namespace tensorflow;
-vector<tensorflow::Output> op_test()
+vector<tensorflow::Tensor> op_test()
 {
-    tensorflow::Tensor abslist = tensorflow::Tensor(tensorflow::DT_FLOAT,{8});
-    abslist.flat<float>().setRandom();
+    tensorflow::Tensor abslist = tensorflow::Tensor(tensorflow::DT_FLOAT,{4});
+    abslist.flat<float>().setValues({-1,-2,-4,-6});
+
+    cout<<abslist.DebugString()<<endl;
 
 
     tensorflow::Scope root = tensorflow::Scope::NewRootScope();
@@ -18,8 +20,12 @@ vector<tensorflow::Output> op_test()
     auto abs_test = tensorflow::ops::Abs(root,abslist);
     //auto assign_abs = tensorflow::ops::Assign(root,tensorflow::ops::Abs(root,abslist),abslist);
 
-    vector<tensorflow::Output> outputs;
+    vector<tensorflow::Tensor> outputs;
     TF_CHECK_OK(session.Run({abs_test},&outputs));
+
+    cout<<"infomation:"<<endl
+       <<outputs[0].DebugString()<<endl;
+
     return outputs;
 }
 
